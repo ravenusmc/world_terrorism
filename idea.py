@@ -19,7 +19,7 @@ deaths =[]
 dates = []
 start = 0;
 date = "2002-01-01"
-while start < 564: 
+while start < 29363: 
   date = datetime.strptime(data.iat[start, 1], "%Y-%m-%d")
   #date = data.iat[start, 1]
   death = data.iat[start, 4]
@@ -27,7 +27,7 @@ while start < 564:
   deaths.append(death)
   start += 1
 
-print(deaths)
+# print(deaths)
 
 fig = plt.figure(dpi=128, figsize=(10,6))
 plt.plot(dates, deaths, linewidth=2, c="red")
@@ -38,8 +38,8 @@ plt.ylabel("Deaths", fontsize=16)
 plt.show()
 
 
-
-
+#564 values for first year
+#29363  #Total values 
 
 
 
