@@ -21,24 +21,26 @@ def main():
 #This function provides the main menu to the user. From here, they will be able to select what they want to do. 
 def main_menu():
     print("\033c")
+    data = pd.read_csv('attacks_data.csv')
     print("1. Graph of all deaths since 2002")
+    print("2. Look at a graph for a specific year")
     choice = int(input("What is your choice? "))
     while not main_menu_valid(choice):
         print("Sorry that is not a correct selection")
         choice = int(input("What is your choice? "))
     if choice == 1:
-        all_data()
+        all_data(data)
+    elif choice == 2:
+        attacks_year(data)
 
 #This function will plot all of the data which shows terrorism attacks since 2002 to present day.
-def all_data():
+def all_data(data):
     print("\033c")
     print("Please note that in order to move on, the graph window has to be closed!")
     input("Please press enter to continue ")
-    data = pd.read_csv('attacks_data.csv')
-    deaths =[]
-    dates = []
-    start = 0;
-    date = "2002-01-01"
+    deaths =[] #This list will hold the deaths per day
+    dates = [] #This list will hold the dates 
+    start = 0; #The start variable is set to zero for the first value in the dataset
     while start < 29363: #The 29363 is the number of data points in the file.
       date = datetime.strptime(data.iat[start, 1], "%Y-%m-%d")
       death = data.iat[start, 4]
@@ -49,12 +51,38 @@ def all_data():
     #The below lines are what will plot the data. 
     fig = plt.figure(dpi=128, figsize=(10,6))
     plt.plot(dates, deaths, linewidth=2, c="red")
-    plt.title("Terrorism Attacks during 2002", fontsize=24)
+    plt.title("Islamic Terrorist Attacks - 2002 - 2016", fontsize=24)
     plt.xlabel('Date', fontsize=16)
     fig.autofmt_xdate()
     plt.ylabel("Deaths", fontsize=16)
     plt.show()
     quit_menu()
+
+def attacks_year(data):
+    print("\033c")
+    print("2002")
+    print("2003")
+    print("2004")
+    print("2005")
+    print("2006")
+    print("2007")
+    print("2008")
+    print("2009")
+    print("2010")
+    print("2011")
+    print("2012")
+    print("2012")
+    print("2014")
+    print("2015")
+    print("2016")
+    year = input("Please enter the year you want to look at: ")
+    while year_valid(year):
+        print("That is not an acceptable year!")
+        year = int(input("Please enter the year you want to look at: "))
+    if year == "2002":
+        start = 0;
+        end = 564
+    #Make a function for all the different scenarios?
 
 
 #### Non Critical Functions here 
