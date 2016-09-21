@@ -80,9 +80,15 @@ def attacks_year(data):
         print("That is not an acceptable year!")
         year = int(input("Please enter the year you want to look at: "))
     if year == "2002":
-        start = 0;
-        end = 564
-    #Make a function for all the different scenarios?
+        start_end = year_info(year)
+        print(str(start_end))
+    #Make a function for all the different scenarios? May have to use tuples to return two values 
+
+def year_info(year):
+    start_end = []
+    if year == "2002":
+        return start_end[0, 564]
+
 
 
 #### Non Critical Functions here 
