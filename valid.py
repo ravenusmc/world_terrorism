@@ -15,7 +15,11 @@ def quit_menu_valid(choice):
 
 
 def year_valid(year):
-    if year >= 2002 or year <= 2016:
+    print(type(year))
+    year_modified = int(year)
+    print(type(year_modified))
+    print(year_modified)
+    if year_modified >= 2002 or year_modified <= 2016:
         return True
     else: 
         return False
