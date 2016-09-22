@@ -110,7 +110,15 @@ def year_info(year):
         return start_end
     elif year == 2008:
         start_end.append(8813)
-        start_end.appennd(10842)
+        start_end.append(10842)
+        return start_end
+    elif year == 2009:
+        start_end.append(10842)
+        start_end.append(12784)
+        return start_end
+    elif year == 2010:
+        start_end.append(12784)
+        start_end.append(14710)
         return start_end
 
 def yearly_graph(data, year, start_end):
@@ -131,11 +139,13 @@ def yearly_graph(data, year, start_end):
      
     fig = plt.figure(dpi=128, figsize=(10,6))
     plt.plot(dates, deaths, linewidth=2, c="red")
-    plt.title("Terrorism Attacks during " + str(year), fontsize=24)
+    plt.title("Terrorism Attacks During " + str(year), fontsize=24)
     plt.xlabel('Date', fontsize=16)
     fig.autofmt_xdate()
     plt.ylabel("Deaths", fontsize=16)
     plt.show()
+    quit_menu()
+
 
 
 #### Non Critical Functions here 
