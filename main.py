@@ -79,18 +79,63 @@ def attacks_year(data):
     while not year_valid(year):
         print("That is not an acceptable year!")
         year = int(input("Please enter the year you want to look at: "))
-    if year == 2002:
-        start_end = year_info(year)
-        print(str(start_end))
-    #Make a function for all the different scenarios? May have to use tuples to return two values 
+    start_end = year_info(year)
+    yearly_graph(data, year, start_end)
 
 def year_info(year):
     start_end = []
     if year == 2002:
         start_end.append(0)
         start_end.append(564)
-        return start_end[]
+        return start_end
+    elif year == 2003:
+        start_end.append(565)
+        start_end.append(1354)
+        return start_end
+    elif year == 2004:
+        start_end.append(1354)
+        start_end.append(2335)
+        return start_end
+    elif year == 2005:
+        start_end.append(2335)
+        start_end.append(3869)
+        return start_end
+    elif year == 2006:
+        start_end.append(3869)
+        start_end.append(6155)
+        return start_end
+    elif year == 2007:
+        start_end.append(6155)
+        start_end.append(8813)
+        return start_end
+    elif year == 2008:
+        start_end.append(8813)
+        start_end.appennd(10842)
+        return start_end
 
+def yearly_graph(data, year, start_end):
+    print("\033c")
+    print("Please note that in order to move on, the graph window has to be closed!")
+    input("Please press enter to continue ")
+    deaths =[]
+    dates = []
+    start = start_end[0]
+    end = start_end[1]
+
+    while start < end: 
+      date = datetime.strptime(data.iat[start, 1], "%Y-%m-%d")
+      death = data.iat[start, 4]
+      dates.append(date)
+      deaths.append(death)
+      start += 1
+     
+    fig = plt.figure(dpi=128, figsize=(10,6))
+    plt.plot(dates, deaths, linewidth=2, c="red")
+    plt.title("Terrorism Attacks during " + str(year), fontsize=24)
+    plt.xlabel('Date', fontsize=16)
+    fig.autofmt_xdate()
+    plt.ylabel("Deaths", fontsize=16)
+    plt.show()
 
 
 #### Non Critical Functions here 

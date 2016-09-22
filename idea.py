@@ -5,16 +5,34 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-#Need to make a graph for each year.
 
-nums = [1,2]
-print(nums)
-
-#data = pd.read_csv('attacks_data.csv')
+data = pd.read_csv('attacks_data.csv')
 # print(data.head())
+
 
 # data.Date = pd.to_datetime(data.Date)
 # print(data.groupby(data.Date.dt.year).size())
+#564 start 
+date = datetime.strptime(data.iat[2335, 1], "%Y-%m-%d")
+print(date)
+
+#death = data.iat[594, 4]
+
+# 2002     564
+# 2003     790  #1354 + 981 = 2335
+# 2004     981  #2335 + 1534 = 3869
+# 2005    1534  3869 + 2286 = 6155
+# 2006    2286  6155 + 2658 = 8813
+# 2007    2658  8813 + 2029 = 10842
+# 2008    2029
+# 2009    1942
+# 2010    1926
+# 2011    2043
+# 2012    2559
+# 2013    2846
+# 2014    3013
+# 2015    2893
+# 2016    1300
 
 # deaths =[]
 # dates = []
