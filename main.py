@@ -60,34 +60,36 @@ def all_data(data):
 
 def attacks_year(data):
     print("\033c")
-    print("2002")
-    print("2003")
-    print("2004")
-    print("2005")
-    print("2006")
-    print("2007")
-    print("2008")
-    print("2009")
-    print("2010")
-    print("2011")
-    print("2012")
-    print("2012")
-    print("2014")
-    print("2015")
-    print("2016")
-    year = input("Please enter the year you want to look at: ")
-    while year_valid(year):
+    print("Year: " + str(2002))
+    print("Year: " + str(2003))
+    print("Year: " + str(2004))
+    print("Year: " + str(2005))
+    print("Year: " + str(2006))
+    print("Year: " + str(2007))
+    print("Year: " + str(2008))
+    print("Year: " + str(2009))
+    print("Year: " + str(2010))
+    print("Year: " + str(2011))
+    print("Year: " + str(2012))
+    print("Year: " + str(2013))
+    print("Year: " + str(2014))
+    print("Year: " + str(2015))
+    print("Year: " + str(2016))
+    year = int(input("Please enter the year you want to look at: "))
+    while not year_valid(year):
         print("That is not an acceptable year!")
         year = int(input("Please enter the year you want to look at: "))
-    if year == "2002":
+    if year == 2002:
         start_end = year_info(year)
         print(str(start_end))
     #Make a function for all the different scenarios? May have to use tuples to return two values 
 
 def year_info(year):
     start_end = []
-    if year == "2002":
-        return start_end[0, 564]
+    if year == 2002:
+        start_end.append(0)
+        start_end.append(564)
+        return start_end[]
 
 
 
