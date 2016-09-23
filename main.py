@@ -33,7 +33,9 @@ def main_menu():
     elif choice == 2:
         attacks_year(data)
 
-#This function will plot all of the data which shows terrorism attacks since 2002 to present day.
+#This function will plot all of the data which shows terrorism attacks since 2002 to present day. I also think that 
+#I could combine this function with the yearly_graph to further modulize this program. However, for now, 
+#I want to finish all of my objectives for this project. 
 def all_data(data):
     print("\033c")
     print("Please note that in order to move on, the graph window has to be closed!")
@@ -58,6 +60,8 @@ def all_data(data):
     plt.show()
     quit_menu()
 
+#This function will allow the user to select which year they want to look at and then that information will eventually
+#be used to build a graph for that specific year.
 def attacks_year(data):
     print("\033c")
     print("Year: " + str(2002))
