@@ -82,6 +82,8 @@ def attacks_year(data):
     start_end = year_info(year)
     yearly_graph(data, year, start_end)
 
+#This function will take the year that the user enters and gets the first and last data point for that year 
+# and then returns an array with those two values.
 def year_info(year):
     start_end = []
     if year == 2002:
@@ -119,6 +121,30 @@ def year_info(year):
     elif year == 2010:
         start_end.append(12784)
         start_end.append(14710)
+        return start_end
+    elif year == 2011:
+        start_end.append(14710)
+        start_end.append(16753)
+        return start_end
+    elif year == 2012:
+        start_end.append(16753)
+        start_end.append(19312)
+        return start_end
+    elif year == 2013:
+        start_end.append(19312)
+        start_end.append(22158)
+        return start_end
+    elif year == 2014:
+        start_end.append(22158)
+        start_end.append(25171)
+        return start_end
+    elif year == 2015:
+        start_end.append(25171)
+        start_end.append(28064)
+        return start_end
+    elif year == 2016:
+        start_end.append(28064)
+        start_end.append(29364)
         return start_end
 
 def yearly_graph(data, year, start_end):
