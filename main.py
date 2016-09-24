@@ -151,6 +151,7 @@ def year_info(year):
         start_end.append(29364)
         return start_end
 
+#This function is what will build the graph for each individual year. 
 def yearly_graph(data, year, start_end):
     print("\033c")
     print("Please note that in order to move on, the graph window has to be closed!")

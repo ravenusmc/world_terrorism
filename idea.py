@@ -5,68 +5,43 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+import pycountry
+
 
 data = pd.read_csv('attacks_data.csv')
-# print(data.head())
+print(data.head())
 
+county_list = []
+count = 0 
+
+while count <= 564:
+  
+
+
+country = data.iat[0, 2]
+print(country)
+
+
+# input_countries = ['Andorra', 'United Arab Emirates', 'Afghanistan']
+
+# countries = {}
+# for country in pycountry.countries:
+#     countries[country.name] = country.alpha2
+
+# codes = [countries.get(country, 'Unknown code') for country in input_countries]
+
+# print(codes)
+
+
+
+
+
+
+
+### OLD 
 
 # data.Date = pd.to_datetime(data.Date)
 # print(data.groupby(data.Date.dt.year).size())
 #564 start 
-date = datetime.strptime(data.iat[2335, 1], "%Y-%m-%d")
-print(date)
-
-#death = data.iat[594, 4]
-
-# 2002     564
-# 2003     790  #1354 + 981 = 2335
-# 2004     981  #2335 + 1534 = 3869
-# 2005    1534  3869 + 2286 = 6155
-# 2006    2286  6155 + 2658 = 8813
-# 2007    2658  8813 + 2029 = 10842
-# 2008    2029  10842 + 1942 = 12784
-# 2009    1942  12784 + 1926 = 14710
-# 2010    1926  14710 + 2043 = 16753
-# 2011    2043  16753 + 2559 = 19312
-# 2012    2559  19312 + 2846 = 22158
-# 2013    2846  22158 + 3013 = 25171
-# 2014    3013  25171 + 2893 = 28064
-# 2015    2893  28064 + 1300 = 29364
-# 2016    1300
-
-# deaths =[]
-# dates = []
-
-# start = 0;
-# end = 564
-# year = 2002
-
-# while start < end: 
-#   date = datetime.strptime(data.iat[start, 1], "%Y-%m-%d")
-#   death = data.iat[start, 4]
-#   dates.append(date)
-#   deaths.append(death)
-#   start += 1
- 
-# fig = plt.figure(dpi=128, figsize=(10,6))
-# plt.plot(dates, deaths, linewidth=2, c="red")
-# plt.title("Terrorism Attacks during " + str(year), fontsize=24)
-# plt.xlabel('Date', fontsize=16)
-# fig.autofmt_xdate()
-# plt.ylabel("Deaths", fontsize=16)
-# plt.show()
-
-#looking at data types: 
-#print(data.dtypes) #Date is an object
-
-#print(data.iat[3,4])
-#print(data.groupby(data.Date.dt.year).size())
-
-#print(data.Date.dt.year)
-
-
-
-
-#564 values for first year
-#29363  #Total values 
-
+# date = datetime.strptime(data.iat[2335, 1], "%Y-%m-%d")
+# print(date)
