@@ -6,4 +6,4 @@ This project is another project looking at terrorism however this time I have da
 #Getting started
 ### Installing 
 
-To use this program, you will need Pandas, numpy and matplotlib installed.
+To use this program, you will need Pandas, numpy, pygal, pycountry and matplotlib installed.
