@@ -6,37 +6,55 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 import pycountry
+from pygal.maps.world import World
 
 
 data = pd.read_csv('attacks_data.csv')
-print(data.head())
+# print(data.head())
 
-county_list = []
-count = 0 
+# country_list = []
+# death_list = []
+# count = 0 
 
-while count <= 564:
-  
+# while count <= 564:
+#   country = data.iat[count, 2]
+#   death_count = data.iat[count, 4]
+#   country_list.append(country)
+#   death_list.append(death_count)
+#   count += 1
 
-
-country = data.iat[0, 2]
-print(country)
-
-
-# input_countries = ['Andorra', 'United Arab Emirates', 'Afghanistan']
-
+# #Lines of code to convert country names to 2 letter abbreviations
 # countries = {}
 # for country in pycountry.countries:
 #     countries[country.name] = country.alpha2
 
-# codes = [countries.get(country, 'Unknown code') for country in input_countries]
-
-# print(codes)
+# codes = [countries.get(country, 'Unknown code') for country in country_list]
 
 
+# wm = World()
+# wm.title = "World Map"
+# wm.add('World', {'us': 34500993, 'fr': 334544})
+# wm.render_to_file('map.svg')
 
 
+count = 0 
 
+while count <= 564:
+  country = data.iat[count, 2]
+  death_count = data.iat[count, 4]
+  country_list.append(country)
+  death_list.append(death_count)
+  count += 1
 
+print(data.groupby(data.Country).size())
+
+#Steps to build the world map for terrorist attacks: 
+
+#I need to find all the terrorist attacks in one country 
+#I need to add together all of those terrorist attacks. 
+#I need to create a dictionary, which will hold all of the two letter country codes and total deaths and push them into 
+#The dictionary. 
+#That dictionary may then be placed into the wm.add line. 
 
 ### OLD 
 
