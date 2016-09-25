@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt
 from datetime import datetime
+import pycountry
+from pygal.maps.world import World
 
 from valid import *
 
@@ -24,6 +26,7 @@ def main_menu():
     data = pd.read_csv('attacks_data.csv')
     print("1. Graph of all deaths since 2002")
     print("2. Look at a graph for a specific year")
+    print("3. Look at a Map for a specific year")
     choice = int(input("What is your choice? "))
     while not main_menu_valid(choice):
         print("Sorry that is not a correct selection")
@@ -32,6 +35,8 @@ def main_menu():
         all_data(data)
     elif choice == 2:
         attacks_year(data)
+    elif choice == 3: 
+        svg_map()
 
 #This function will plot all of the data which shows terrorism attacks since 2002 to present day. I also think that 
 #I could combine this function with the yearly_graph to further modulize this program. However, for now, 
@@ -194,5 +199,24 @@ def quit_menu():
         print("Sorry to see you leave!")
         print("Have a great day!")
 
+
+#This function will plot the data for a specific year to an SVG map. 
+def svg_map():
+    print("\033c")
+    print("Year: " + str(2002))
+    print("Year: " + str(2003))
+    print("Year: " + str(2004))
+    print("Year: " + str(2005))
+    print("Year: " + str(2006))
+    print("Year: " + str(2007))
+    print("Year: " + str(2008))
+    print("Year: " + str(2009))
+    print("Year: " + str(2010))
+    print("Year: " + str(2011))
+    print("Year: " + str(2012))
+    print("Year: " + str(2013))
+    print("Year: " + str(2014))
+    print("Year: " + str(2015))
+    print("Year: " + str(2016))
 
 main()

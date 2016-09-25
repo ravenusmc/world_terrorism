@@ -57,33 +57,38 @@ death_count = []
 count = 0
 
 while count < len(group):
-  county_value = group.reset_index().values[count][0]
+  country_value = group.reset_index().values[count][0]
   death_value = group.reset_index().values[count][1]
-  country_list.append(county_value)
+  country_list.append(country_value)
   death_count.append(death_value)
   count += 1
 
-# #Lines of code to convert country names to 2 letter abbreviations
+
+
+#Lines of code to convert country names to 2 letter abbreviations
 countries = {}
 for country in pycountry.countries:
     countries[country.name] = country.alpha2
 
 country_codes = [countries.get(country, 'Unknown code') for country in country_list]
 
+new_countrylist = []
+
+#I have to convert all of the country codes to lowercase-only way the wm.add method seems to work.
+for country in country_codes:
+  lowercase_country = country.lower()
+  new_countrylist.append(lowercase_country)
+
 country_dictionary = {}
 count = 0 
 while count < len(country_codes):
-  country_dictionary[country_codes[count]] = death_count[count]
+  country_dictionary[new_countrylist[count]] = death_count[count]
   count += 1
 
-test = {'us': 1, 'fr': 1}
-
-print(test)
-
-# wm = World()
-# wm.title = "Terrorist Attacks in 2002"
-# wm.add('World', test)
-# wm.render_to_file('map.svg')
+wm = World()
+wm.title = "Terrorist Attacks in 2002"
+wm.add('World', country_dictionary)
+wm.render_to_file('map.svg')
 
 
 
@@ -94,8 +99,8 @@ print(test)
 #I need to add together all of those terrorist attacks.  -DONE
 #I need to convert the country names to two letter abbrvaiations. -Done 
 #I need to create a dictionary, which will hold all of the two letter country codes and total deaths and push them into 
-#The dictionary. 
-#That dictionary may then be placed into the wm.add line. 
+#The dictionary.  -DONE
+#That dictionary may then be placed into the wm.add line. -DONE
 
 ### OLD 
 
