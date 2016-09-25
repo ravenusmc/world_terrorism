@@ -229,5 +229,9 @@ def svg_map():
     print("Year: " + str(2014))
     print("Year: " + str(2015))
     print("Year: " + str(2016))
+    year = int(input("Please enter the year you want to look at: "))
+    while not year_valid(year):
+        print("That is not an acceptable year!")
+        year = int(input("Please enter the year you want to look at: "))
 
 main()
