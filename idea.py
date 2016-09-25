@@ -37,23 +37,62 @@ data = pd.read_csv('attacks_data.csv')
 # wm.add('World', {'us': 34500993, 'fr': 334544})
 # wm.render_to_file('map.svg')
 
+
+#################################### WORK ON TERRORISM MAP HERE
+
 #This line gets all of the columns that I want 
 first_year = data[:564]
 #This line will show me how many terrorist attacks occurred in each country for that year.
 group = first_year.groupby(first_year.Country).size()
-# print(first_year.groupby(["Country"]).count())
-# death = first_year.groupby(["Country"]).count()
-# print(death.iat[5,0])
-point = group.reset_index().values[1][1]
-print(point)
+#This gets me the amount of countries in the group object. 
+# print(len(group))
+
+country_list = []
+death_count = []
+
+
+# point = group.reset_index().values[2][1]
+# print(point)
+
+count = 0
+
+while count < len(group):
+  county_value = group.reset_index().values[count][0]
+  death_value = group.reset_index().values[count][1]
+  country_list.append(county_value)
+  death_count.append(death_value)
+  count += 1
+
+# #Lines of code to convert country names to 2 letter abbreviations
+countries = {}
+for country in pycountry.countries:
+    countries[country.name] = country.alpha2
+
+country_codes = [countries.get(country, 'Unknown code') for country in country_list]
+
+country_dictionary = {}
+count = 0 
+while count < len(country_codes):
+  country_dictionary[country_codes[count]] = death_count[count]
+  count += 1
+
+test = {'us': 1, 'fr': 1}
+
+print(test)
+
+# wm = World()
+# wm.title = "Terrorist Attacks in 2002"
+# wm.add('World', test)
+# wm.render_to_file('map.svg')
 
 
 
 #Steps to build the world map for terrorist attacks: 
 
 #I need to get the data sets for each year-partly already have this 'idea' from building the graphs-DONE
-#I need to find all the terrorist attacks in one country for that year 
-#I need to add together all of those terrorist attacks. 
+#I need to find all the terrorist attacks in one country for that year-Done 
+#I need to add together all of those terrorist attacks.  -DONE
+#I need to convert the country names to two letter abbrvaiations. -Done 
 #I need to create a dictionary, which will hold all of the two letter country codes and total deaths and push them into 
 #The dictionary. 
 #That dictionary may then be placed into the wm.add line. 
