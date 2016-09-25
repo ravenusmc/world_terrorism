@@ -8,6 +8,17 @@ from pygal.maps.world import World
 
 from valid import *
 
+### This function will be used to convert the country names to their two letter code. 
+def country_name_convert(country_list):
+  countries = {}
+  for country in pycountry.countries:
+    countries[country.name] = country.alpha2
+
+  country_codes = [countries.get(country, 'Unknown code') for country in country_list]
+
+  return country_codes
+
+### Start of main program.
 
 #This is the main function which will start the program. 
 def main():
