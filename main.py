@@ -36,9 +36,10 @@ def main():
 def main_menu():
     print("\033c")
     data = pd.read_csv('attacks_data.csv')
-    print("1. Graph of all deaths since 2002")
+    print("1. Graph of all attacks since 2002")
     print("2. Look at a graph for a specific year")
-    print("3. Look at a Map for a specific year")
+    print("3. Look at a map for all attacks since 2002")
+    print("4. Look at a Map for a specific year")
     choice = int(input("What is your choice? "))
     while not main_menu_valid(choice):
         print("Sorry that is not a correct selection")
@@ -47,8 +48,12 @@ def main_menu():
         all_data(data)
     elif choice == 2:
         attacks_year(data)
-    elif choice == 3: 
-        svg_map(data)
+    elif choice == 3:
+        start_end = [0,29365]
+        year = "2002-2016"
+        create_svg_map(data, start_end, year)
+    elif choice == 4: 
+        svg_map_singleyear(data)
 
 #This function will plot all of the data which shows terrorism attacks since 2002 to present day. I also think that 
 #I could combine this function with the yearly_graph to further modulize this program. However, for now, 
@@ -195,7 +200,7 @@ def yearly_graph(data, year, start_end):
     quit_menu()
 
 #This function will plot the data for a specific year to an SVG map. 
-def svg_map(data):
+def svg_map_singleyear(data):
     print("\033c")
     print("Year: " + str(2002))
     print("Year: " + str(2003))
@@ -274,7 +279,7 @@ def create_svg_map(data, start_end, year):
     #These lines use pygal to create the map which will be a svg document.
     wm_style = RotateStyle('#336699')
     wm = World(style=wm_style)
-    wm.title = "Terrorist Attacks in " + str(year)
+    wm.title = "Islamic Terrorist Attacks in " + str(year)
     wm.add('0-50', attack_1)
     wm.add('51-100', attack_2)
     wm.add('101-150', attack_3)
@@ -282,7 +287,8 @@ def create_svg_map(data, start_end, year):
     wm.add('201-250', attack_5)
     wm.add('>250', attack_6)
     wm.render_to_file('map.svg')
-
+    svg_map_help()
+    quit_menu()
 
 #### Non Critical Functions here 
 #This function is what will allow the user to quit or go back to main menu.
@@ -298,6 +304,15 @@ def quit_menu():
     elif choice == 2:
         print("Sorry to see you leave!")
         print("Have a great day!")
+
+def svg_map_help():
+    print("In order to see the map, one has to open up a web browser.")
+    print("The map will actually be created in the same folder as the python program")
+    print("On the web browser, go to file => open.")
+    print("Find the folder where you store this python project.")
+    print("Open up the python folder for this project.")
+    print("Once in that folder, find a file called map.svg")
+    print("The map then should appear on your screen.")
 
 
 main()
