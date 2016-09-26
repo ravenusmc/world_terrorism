@@ -39,7 +39,7 @@ def main_menu():
     print("1. Graph of all attacks since 2002")
     print("2. Look at a graph for a specific year")
     print("3. Look at a map for all attacks since 2002")
-    print("4. Look at a Map for a specific year")
+    print("4. Look at a map for a specific year")
     choice = int(input("What is your choice? "))
     while not main_menu_valid(choice):
         print("Sorry that is not a correct selection")
@@ -243,7 +243,8 @@ def create_svg_map(data, start_end, year):
         country_list.append(country_value)
         death_count.append(death_value)
         count += 1
-    #Lines of code to convert country names to 2 letter abbreviations
+    #Function to convert country names to 2 letter abbreviations. See country_name_convert function at the top 
+    #to see how it works-the only piece of code that I got all from stack overflow. 
     country_codes = country_name_convert(country_list)
     #Another list is created to hold all of the country abbreviations which have been converted to lowercase.
     new_countrylist = []
