@@ -47,7 +47,7 @@ def main_menu():
     elif choice == 2:
         attacks_year(data)
     elif choice == 3: 
-        svg_map()
+        svg_map(data)
 
 #This function will plot all of the data which shows terrorism attacks since 2002 to present day. I also think that 
 #I could combine this function with the yearly_graph to further modulize this program. However, for now, 
@@ -193,26 +193,8 @@ def yearly_graph(data, year, start_end):
     plt.show()
     quit_menu()
 
-
-
-#### Non Critical Functions here 
-#This function is what will allow the user to quit or go back to main menu.
-def quit_menu():
-    print("1. Main Menu")
-    print("2. Quit")
-    choice = int(input("What is your choice? "))
-    while not quit_menu_valid(choice):
-        print("That is not a valid option")
-        choice = int(input("What is your choice? "))
-    if choice == 1:
-        main_menu()
-    elif choice == 2:
-        print("Sorry to see you leave!")
-        print("Have a great day!")
-
-
 #This function will plot the data for a specific year to an SVG map. 
-def svg_map():
+def svg_map(data):
     print("\033c")
     print("Year: " + str(2002))
     print("Year: " + str(2003))
@@ -233,5 +215,66 @@ def svg_map():
     while not year_valid(year):
         print("That is not an acceptable year!")
         year = int(input("Please enter the year you want to look at: "))
+    start_end = year_info(year)
+    create_svg_map(data, start_end, year)
+
+
+def create_svg_map(data, start_end, year):
+    #This line gets all of the columns that I want. There are 564 data points in the first year so that is why
+    #I use that number 
+    year_examined = data[start_end[0]:start_end[1]]
+    #This line will show me how many terrorist attacks occurred in each country for that year.
+    group = year_examined.groupby(year_examined.Country).size()
+    #I create two lists which will hold the countrys and the amount of people killed for that year in that country.
+    country_list = []
+    death_count = []
+    count = 0
+    #I create a while loop that will find a country and push it into the country_list list and the attacks for that 
+    #country, in that specific year, into another list. 
+    while count < len(group):
+        country_value = group.reset_index().values[count][0]
+        death_value = group.reset_index().values[count][1]
+        country_list.append(country_value)
+        death_count.append(death_value)
+        count += 1
+    #Lines of code to convert country names to 2 letter abbreviations
+    country_codes = country_name_convert(country_list)
+    #Another list is created to hold all of the country abbreviations which have been converted to lowercase.
+    new_countrylist = []
+    #I have to convert all of the country codes to lowercase-only way the wm.add method seems to work.
+    for country in country_codes:
+        lowercase_country = country.lower()
+        new_countrylist.append(lowercase_country)
+    #The wm.add method needs a dictionary to work with. Here, I create a dictionary which holds the country abbrevation
+    #and the amount of terrorist attacks, for that year, in that country as the value for that key. 
+    country_dictionary = {}
+    count = 0 
+    while count < len(country_codes):
+        country_dictionary[new_countrylist[count]] = death_count[count]
+        count += 1
+    #These lines use pygal to create the map which will be a svg document.  
+    wm = World()
+    wm.title = "Terrorist Attacks in " + str(year)
+    wm.add('World', country_dictionary)
+    wm.render_to_file('map.svg')
+
+
+
+
+#### Non Critical Functions here 
+#This function is what will allow the user to quit or go back to main menu.
+def quit_menu():
+    print("1. Main Menu")
+    print("2. Quit")
+    choice = int(input("What is your choice? "))
+    while not quit_menu_valid(choice):
+        print("That is not a valid option")
+        choice = int(input("What is your choice? "))
+    if choice == 1:
+        main_menu()
+    elif choice == 2:
+        print("Sorry to see you leave!")
+        print("Have a great day!")
+
 
 main()
