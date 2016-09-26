@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import pycountry
 from pygal.maps.world import World
+from pygal.style import RotateStyle
 
 from valid import *
 
@@ -252,8 +253,9 @@ def create_svg_map(data, start_end, year):
     while count < len(country_codes):
         country_dictionary[new_countrylist[count]] = death_count[count]
         count += 1
-
-    #Go up by 50 
+    #These lines of code will break the attacks up into groups of 50. This, if a state has 0-50 attacks in a year
+    #it will be placed into one group. Another state that has 51-100 attacks will be placed into another 
+    #group. Then, when the map comes up, the user will see the attacks based on a color code. 
     attack_1, attack_2, attack_3, attack_4, attack_5, attack_6 = {}, {}, {}, {}, {}, {}
     for country, attack_count in country_dictionary.items():
         if attack_count <= 50:
@@ -270,7 +272,8 @@ def create_svg_map(data, start_end, year):
             attack_6[country] = attack_count
 
     #These lines use pygal to create the map which will be a svg document.
-    wm = World()
+    wm_style = RotateStyle('#336699')
+    wm = World(style=wm_style)
     wm.title = "Terrorist Attacks in " + str(year)
     wm.add('0-50', attack_1)
     wm.add('51-100', attack_2)
@@ -279,8 +282,6 @@ def create_svg_map(data, start_end, year):
     wm.add('201-250', attack_5)
     wm.add('>250', attack_6)
     wm.render_to_file('map.svg')
-
-
 
 
 #### Non Critical Functions here 
