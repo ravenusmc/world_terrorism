@@ -252,10 +252,32 @@ def create_svg_map(data, start_end, year):
     while count < len(country_codes):
         country_dictionary[new_countrylist[count]] = death_count[count]
         count += 1
-    #These lines use pygal to create the map which will be a svg document.  
+
+    #Go up by 50 
+    attack_1, attack_2, attack_3, attack_4, attack_5, attack_6 = {}, {}, {}, {}, {}, {}
+    for country, attack_count in country_dictionary.items():
+        if attack_count <= 50:
+            attack_1[country] = attack_count
+        elif attack_count > 50 and attack_count <= 100:
+            attack_2[country] = attack_count
+        elif attack_count > 100 and attack_count <= 150:
+            attack_3[country] = attack_count
+        elif attack_count > 150 and attack_count <= 200:
+            attack_4[country] = attack_count
+        elif attack_count > 200 and attack_count <= 250:
+            attack_5[country] = attack_count
+        else:
+            attack_6[country] = attack_count
+
+    #These lines use pygal to create the map which will be a svg document.
     wm = World()
     wm.title = "Terrorist Attacks in " + str(year)
-    wm.add('World', country_dictionary)
+    wm.add('0-50', attack_1)
+    wm.add('51-100', attack_2)
+    wm.add('101-150', attack_3)
+    wm.add('151-200', attack_4)
+    wm.add('201-250', attack_5)
+    wm.add('>250', attack_6)
     wm.render_to_file('map.svg')
 
 
